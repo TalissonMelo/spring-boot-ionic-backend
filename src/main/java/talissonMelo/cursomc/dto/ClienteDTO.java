@@ -8,7 +8,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import talissonMelo.cursomc.domain.Cliente;
+import talissonMelo.cursomc.services.validation.ClientUpdate;
 
+@ClientUpdate
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
