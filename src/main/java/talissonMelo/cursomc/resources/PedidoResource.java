@@ -15,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import talissonMelo.cursomc.domain.Categoria;
 import talissonMelo.cursomc.domain.Pedido;
-import talissonMelo.cursomc.dto.CategoriaDTO;
 import talissonMelo.cursomc.services.PedidoService;
 
 @RestController

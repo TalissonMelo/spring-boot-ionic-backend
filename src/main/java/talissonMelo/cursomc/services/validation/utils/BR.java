@@ -19,7 +19,7 @@ public class BR {
 	}
 
 	/**
-	 * 
+	 * Valida CPF
 	 *
 	 * @param ssn
 	 * @return
@@ -34,7 +34,7 @@ public class BR {
 	}
 
 	/**
-	 *
+	 * Valida CNPJ
 	 *
 	 * @param tin
 	 * @return
