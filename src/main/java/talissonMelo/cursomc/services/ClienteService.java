@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import talissonMelo.cursomc.domain.Cidade;
 import talissonMelo.cursomc.domain.Cliente;
 import talissonMelo.cursomc.domain.Endereco;
+import talissonMelo.cursomc.domain.enums.Perfil;
 import talissonMelo.cursomc.domain.enums.TipoCliente;
 import talissonMelo.cursomc.dto.ClienteDTO;
 import talissonMelo.cursomc.dto.ClienteNewDTO;
 import talissonMelo.cursomc.repositories.ClienteRepository;
 import talissonMelo.cursomc.repositories.EnderecoRepository;
+import talissonMelo.cursomc.security.UserSS;
+import talissonMelo.cursomc.services.exceptions.AuthorizationException;
 import talissonMelo.cursomc.services.exceptions.DataIntegrityException;
 import talissonMelo.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -34,9 +37,14 @@ public class ClienteService {
 	
 	@Autowired 
 	private BCryptPasswordEncoder crypt;
-
+	
 	public Cliente find(Integer id) {
 
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado.");
+		}
+			
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
