@@ -19,10 +19,10 @@ import talissonMelo.cursomc.services.UserService;
 @RestController
 @RequestMapping(value = "/auth")
 public class AuthResource {
-	
+
 	@Autowired
 	private JWTUtil jwtUtil;
-	
+
 	@Autowired
 	private AuthService service;
 
@@ -31,9 +31,10 @@ public class AuthResource {
 		UserSS user = UserService.authenticated();
 		String token = jwtUtil.generateToken(user.getUsername());
 		response.addHeader("Authorization", "Bearer " + token);
+		response.addHeader("access-control-expose-headers", "Authorization");
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO objDTO) {
 		service.sendNewPassword(objDTO.getEmail());

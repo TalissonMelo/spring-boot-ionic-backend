@@ -114,8 +114,7 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		// Mudar email para confirmar se email está sendo enviado.
-		Cliente cli1 = new Cliente(null, "Maria Silva", "talisson.cursos@gmail.com", "36378912377",
+		Cliente cli1 = new Cliente(null, "Talisson Mello", "talisson.cursos@gmail.com", "36378912377",
 				TipoCliente.PESSOAFISICA, bCrypt.encode("12345678"));
 		
 		Cliente cli2 = new Cliente(null, "Bob Silva", "bob.cursos@gmail.com", "36378912377",
