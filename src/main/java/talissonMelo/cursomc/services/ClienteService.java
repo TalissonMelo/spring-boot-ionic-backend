@@ -36,7 +36,7 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 
 	@Autowired
-	private BCryptPasswordEncoder crypt;
+	private BCryptPasswordEncoder bCrypt;
 
 	public Cliente find(Integer id) {
 
@@ -109,7 +109,7 @@ public class ClienteService {
 
 	public Cliente fromDTO(ClienteNewDTO objDTO) {
 		Cliente cli = new Cliente(null, objDTO.getNome(), objDTO.getEmail(), objDTO.getCpfOuCnpj(),
-				TipoCliente.toEnum(objDTO.getTipo()), crypt.encode(objDTO.getSenha()));
+				TipoCliente.toEnum(objDTO.getTipo()), bCrypt.encode(objDTO.getSenha()));
 		Cidade cid = new Cidade(objDTO.getCidadeId(), null, null);
 		Endereco end = new Endereco(null, objDTO.getLogradouro(), objDTO.getNumero(), objDTO.getComplemento(),
 				objDTO.getBairro(), objDTO.getCep(), cli, cid);

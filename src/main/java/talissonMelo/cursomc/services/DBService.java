@@ -202,12 +202,10 @@ public class DBService {
 
 		Cliente cli1 = new Cliente(null, "Talisson Mello", "talisson.cursos@gmail.com", "36378912377",
 				TipoCliente.PESSOAFISICA, bCrypt.encode("12345678"));
-
-		Cliente cli2 = new Cliente(null, "Bob Silva", "bob.cursos@gmail.com", "36378912377", TipoCliente.PESSOAFISICA,
-				bCrypt.encode("12345678"));
-
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
+		Cliente cli2 = new Cliente(null, "Bob Silva", "bob.cursos@gmail.com", "36378912377", 
+				TipoCliente.PESSOAFISICA, bCrypt.encode("12345678"));
 		cli2.getTelefones().addAll(Arrays.asList("932423415", "932463415"));
 		cli2.addPerfil(Perfil.ADMIN);
 
@@ -216,7 +214,7 @@ public class DBService {
 		Endereco e3 = new Endereco(null, "Avenida Floriano", "2000", "Sala 800", "Centro", "38777012", cli2, c2);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
-		cli1.getEnderecos().addAll(Arrays.asList(e3));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
 
 		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
